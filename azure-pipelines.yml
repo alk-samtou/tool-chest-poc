@@ -1,0 +1,39 @@
+# Build Tool Chest
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  phpVersion: 8
+
+steps:
+
+- script: |
+    sudo update-alternatives --set php /usr/bin/php$(phpVersion)
+    sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
+    sudo update-alternatives --set phpdbg /usr/bin/phpdbg$(phpVersion)
+    sudo update-alternatives --set php-cgi /usr/bin/php-cgi$(phpVersion)
+    sudo update-alternatives --set phar.phar /usr/bin/phar.phar$(phpVersion)
+    php -version
+  displayName: 'Use PHP version $(phpVersion)'
+
+- script: php -r "file_exists('.env') || copy('.env.example', '.env');"
+  displayName: 'Copy .env'
+
+- script: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+  displayName: 'Composer Install'
+
+- script: php artisan key:generate
+  displayName: 'Generate Key'
+
+- script: npm install && npm run production
+  displayName: NPM Install & Generate Assets
+
+- script: chmod -R 777 storage bootstrap/cache
+  displayName: Directory Permissions
+
+- publish: $(Build.SourcesDirectory)
+  artifact: toolchest
