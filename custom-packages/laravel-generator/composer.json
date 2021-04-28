@@ -1,0 +1,25 @@
+{
+    "name": "metasismedia/laravel-generator",
+    "description": "Laravel file generator",
+    "type": "library",
+    "require": {
+        "php": "^8.0"
+    },
+    "require-dev": {
+        "laravel/framework": "^8.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "MetasisMedia\\LaravelGenerator\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MetasisMedia\\LaravelGenerator\\ServiceProvider"
+            ]
+        }
+    }
+}
