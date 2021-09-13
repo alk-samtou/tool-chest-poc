@@ -12,7 +12,7 @@ use App\Services\DocumentService as Service;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use MetasisMedia\LaravelGenerator\Interfaces\Crud;
-
+use Illuminate\Http\Request;
 class DocumentController extends Controller
 {
     protected Crud $service;
@@ -35,9 +35,16 @@ class DocumentController extends Controller
         return response(['data' => null], 500);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $data = $this->service->paginate($this->paginateCount);
+        $categories = $request->query('category',false);
+        if($categories){
+            $categories = explode(',',$categories);
+            $data = $this->service->filteredPaginate($this->paginateCount,$categories);
+        } else {
+            $data = $this->service->paginate($this->paginateCount);
+        }
+
         return response($data, 200);
     }
 

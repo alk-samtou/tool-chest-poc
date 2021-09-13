@@ -12,7 +12,7 @@ use MetasisMedia\LaravelGenerator\Interfaces\Crud;
 class NewsController extends Controller
 {
     protected Crud $service;
-    protected string $routeName = '{{namePluralLowerCaseKebab}}';
+    protected string $routeName = 'news';
     protected int $paginateCount = 10;
 
     public function __construct(Service $service, Model $model)

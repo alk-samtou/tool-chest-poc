@@ -18,7 +18,7 @@
                 <div class="w-screen max-w-md">
                     <form class="h-full divide-y divide-gray-200 flex flex-col bg-white shadow-xl">
                         <div class="flex-1 h-0 overflow-y-auto">
-                            <div class="py-6 px-4 bg-indigo-600 sm:px-6">
+                            <div class="py-6 px-4 bg-indigo-700 sm:px-6">
                                 <div class="flex items-center justify-between">
                                     <h2 class="text-lg font-medium text-white" id="slide-over-title">
                                         Upload New File
@@ -52,8 +52,8 @@
                                         </div>
 
                                         <div v-if="categories">
-                                            <label for="category" class="block text-sm font-medium text-gray-700">Category <span class="text-red-700"> *</span> </label>
-                                            <select v-model="record.document_category_id" id="category" name="category" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                            <label for="category-id" class="block text-sm font-medium text-gray-700">Category <span class="text-red-700"> *</span> </label>
+                                            <select v-model="record.document_category_id" id="category-id" name="category" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
                                                 <option value="" selected></option>
                                                 <option v-for="category in categories.data" :value="category.id" v-html="category.name"></option>
                                             </select>
@@ -209,6 +209,13 @@
 </template>
 <script>
 export default {
+    props:{
+      categories:{
+          default(){
+              return false;
+          }
+      }
+    },
     emits:['cancel-add-file','added-file'],
     data(){
         return {
@@ -220,20 +227,13 @@ export default {
                 document_permission: null,
                 is_featured: null,
                 password: null,
-            },
-            categories: false
+            }
         };
     },
     mounted() {
-        this.getCategories();
+
     },
     methods:{
-        getCategories(url='/api/document-categories?per_page=100'){
-            const vm = this;
-            window.axios.get(url).then(function(response){
-                vm.categories = response.data;
-            });
-        },
 
         addDocument(){
             const vm = this;

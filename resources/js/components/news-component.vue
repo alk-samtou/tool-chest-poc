@@ -1,10 +1,4 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('News') }}
-        </h2>
-    </x-slot>
-
+<template>
     <div class="py-12">
         <!-- This example requires Tailwind CSS v2.0+ -->
         <div class="bg-white pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
@@ -14,7 +8,7 @@
                         Recent News & Information
                     </h2>
                     <p class="mt-3 text-xl text-gray-500 sm:mt-4">
-                        Official Elks DAP communication for State Chairs. Please login often to stay up to date on the latest happenings!
+                        Official Elks DAP communication for State Chairs. Be sure to login often to stay up to date!
                     </p>
                 </div>
                 <div class="mt-12 grid gap-16 pt-12 lg:grid-cols-3 lg:gap-x-5 lg:gap-y-12">
@@ -154,4 +148,10 @@
         </div>
 
     </div>
-</x-app-layout>
+</template>
+
+<script>
+export default {
+
+}
+</script>

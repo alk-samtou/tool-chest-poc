@@ -12,6 +12,7 @@ class News extends Model
     protected $guarded = ['id'];
     protected $fillable = [
         'id',
+        'user_id',
         'news_category_id',
         'title',
         'slug',

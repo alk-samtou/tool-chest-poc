@@ -52,6 +52,35 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
         ],
 
+        'azure-public' => [
+            'driver'    => 'azure',
+            'name'      => env('AZURE_PUBLIC_STORAGE_NAME'),
+            'key'       => env('AZURE_PUBLIC_STORAGE_KEY'),
+            'container' => env('AZURE_PUBLIC_STORAGE_CONTAINER','public'),
+            'url'       => env('AZURE_PUBLIC_STORAGE_URL'),
+            'prefix'    => null,
+        ],
+
+        'azure-private' => [
+            'driver'    => 'azure',
+            'name'      => env('AZURE_PRIVATE_STORAGE_NAME'),
+            'key'       => env('AZURE_PRIVATE_STORAGE_KEY'),
+            'container' => env('AZURE_PRIVATE_STORAGE_CONTAINER','private'),
+            'url'       => env('AZURE_PRIVATE_STORAGE_URL'),
+            'prefix'    => null,
+        ],
+
+        /* SAS tokens
+         'azure' => [
+            'driver'    => 'azure',
+            'sasToken'  => env('AZURE_STORAGE_SAS_TOKEN'),
+            'container' => env('AZURE_STORAGE_CONTAINER'),
+            'url'       => env('AZURE_STORAGE_URL'),
+            'prefix'    => null,
+            'endpoint'  => env('AZURE_STORAGE_ENDPOINT'),
+        ],
+         */
+
     ],
 
     /*

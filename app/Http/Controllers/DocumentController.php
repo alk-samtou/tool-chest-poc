@@ -15,7 +15,7 @@ use MetasisMedia\LaravelGenerator\Interfaces\Crud;
 class DocumentController extends Controller
 {
     protected Crud $service;
-    protected string $routeName = '{{namePluralLowerCaseKebab}}';
+    protected string $routeName = 'files';
     protected int $paginateCount = 10;
 
     public function __construct(Service $service, Model $model)

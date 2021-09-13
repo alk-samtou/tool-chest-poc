@@ -23,6 +23,7 @@ class NewsCategoryFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
+            'color' => $this->faker->hexColor,
         ];
     }
 }

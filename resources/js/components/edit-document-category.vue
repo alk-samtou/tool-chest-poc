@@ -45,7 +45,7 @@ export default {
     methods:{
         save(){
             const vm = this;
-            window.axios.put('/api/document-categories/',{
+            window.axios.put('/api/document-categories/'+vm.category.id,{
                 name: vm.name,
                 description: vm.description,
             }).then(function(response){

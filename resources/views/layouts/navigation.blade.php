@@ -13,8 +13,8 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">{{ __('Dashboard') }}</x-nav-link>
-{{--                    <x-nav-link :href="route('news')" :active="request()->routeIs('news')">{{ __('News') }}</x-nav-link>--}}
-                    <x-nav-link :href="route('files')" :active="request()->routeIs('files')">{{ __('Files') }}</x-nav-link>
+                    <x-nav-link :href="route('news.index')" :active="request()->routeIs('news.index')">{{ __('News') }}</x-nav-link>
+                    <x-nav-link :href="route('files.index')" :active="request()->routeIs('files.index')">{{ __('Files') }}</x-nav-link>
                     <x-nav-link :href="route('events')" :active="request()->routeIs('events')">{{ __('Events') }}</x-nav-link>
                     <x-nav-link :href="route('lessons-report')" :active="request()->routeIs('lessons-report')">{{ __('Teen Zone Lessons Report') }}</x-nav-link>
 {{--                    <x-nav-link :href="route('vendors')" :active="request()->routeIs('vendors')">{{ __('Vendors') }}</x-nav-link>--}}
@@ -73,8 +73,8 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">{{ __('Dashboard') }}</x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('news')" :active="request()->routeIs('news')">{{ __('News') }}</x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('files')" :active="request()->routeIs('files')">{{ __('Files') }}</x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('news.index')" :active="request()->routeIs('news.index')">{{ __('News') }}</x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('files.index')" :active="request()->routeIs('files.index')">{{ __('Files') }}</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('events')" :active="request()->routeIs('events')">{{ __('Events') }}</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('lessons-report')" :active="request()->routeIs('lessons-report')">{{ __('Lessons Report') }}</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('vendors')" :active="request()->routeIs('vendors')">{{ __('Vendors') }}</x-responsive-nav-link>

@@ -10,5 +10,5 @@ class NewsCategory extends Model
     use ModelHasUuid;
     use HasFactory;
     protected $guarded = ['id'];
-    protected $fillable = ['id','name','description',];
+    protected $fillable = ['id','name','color','description',];
 }

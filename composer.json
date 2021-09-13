@@ -16,8 +16,9 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
-        "spatie/laravel-permission": "^4.0",
-        "metasismedia/laravel-generator": "*"
+        "matthewbdaly/laravel-azure-storage": "^1.6",
+        "metasismedia/laravel-generator": "*",
+        "spatie/laravel-permission": "^4.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
