@@ -1,7 +1,7 @@
 <template>
     <manage-categories :categories="categories" active-cat="activeCategory" v-show="show.manageCategories" @categories-updated="getCategories" @cancel-manage-categories="this.show.manageCategories = false"></manage-categories>
     <add-file :categories="categories" v-show="show.addFile" @added-file="getFiles" @cancel-add-file="this.show.addFile = false"></add-file>
-    <edit-file v-show="show.editFile" :file="file" @edited-file="getFiles" @cancel-edit-file="this.show.editFile = false"></edit-file>
+    <edit-file v-show="show.editFile" :categories="categories" :file="file" @delete-file="deleteFile" @edited-file="getFiles" @cancel-edit-file="this.show.editFile = false"></edit-file>
 
     <div class="py-12 px-12">
 
@@ -134,6 +134,13 @@ export default {
             const vm = this;
             window.axios.get(url).then(function(response){
                 vm.activeCategory = response.data;
+            });
+        },
+
+        deleteFile(file){
+            const vm = this;
+            window.axios.delete('/api/documents/'+file.id).then(function(response){
+                vm.getFiles();
             });
         },
 

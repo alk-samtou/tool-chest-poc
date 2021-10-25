@@ -13,6 +13,14 @@ class DocumentUpdateRequest extends FormRequest
 
     public function rules()
     {
-        return [];
+        return [
+            'title'                => 'required',
+            'description'          => '',
+            'document_category_id' => 'exists:document_categories,id',
+            'attachment'           => '',
+            'document_permission'  => '',
+            'is_featured'          => '',
+            'password'             => '',
+        ];
     }
 }

@@ -32,4 +32,19 @@ class Document extends Model
     public function category(): BelongsTo{
         return $this->belongsTo(DocumentCategory::class,'document_category_id','id');
     }
+
+    /**
+     * @throws \Exception
+     */
+    public function getCreatedAtAttribute($date){
+        $d = new \DateTime($date);
+        return $d->format('m/d/Y h:i a');
+    }
+    /**
+     * @throws \Exception
+     */
+    public function getUpdatedAtAttribute($date){
+        $d = new \DateTime($date);
+        return $d->format('m/d/Y h:i a');
+    }
 }

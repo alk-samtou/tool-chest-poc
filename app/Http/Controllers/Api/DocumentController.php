@@ -60,8 +60,20 @@ class DocumentController extends Controller
     public function store(CreateRequest $request): Response
     {
         $requestData = $request->validated();
+        $data = $this->prepareRecord($requestData, $request);
 
+        $record = $this->service->create($data);
+        return response(new ApiResource($record), 201);
+    }
 
+    /**
+     * Prepare data for database entry
+     *
+     * @param $requestData
+     * @param $request
+     * @return array
+     */
+    private function prepareRecord($requestData, $request){
         $data = [];
         $data['added_by_user'] = Auth::user()->id;
         $data['document_category_id'] = $requestData['document_category_id'];
@@ -80,14 +92,14 @@ class DocumentController extends Controller
             $data['file_path'] = $path;
 
         }
-
-        $record = $this->service->create($data);
-        return response(new ApiResource($record), 201);
+        return $data;
     }
 
     public function update(UpdateRequest $request, $id)
     {
-        $data = $request->validated();
+        $requestData = $request->validated();
+        $data = $this->prepareRecord($requestData, $request);
+
         if ($this->service->update($id, $data)) {
             return $this->show($id);
         }

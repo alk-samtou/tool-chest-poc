@@ -21,4 +21,27 @@ class News extends Model
         'featured_image',
         'is_hidden',
     ];
+
+    /**
+     * @throws \Exception
+     */
+    public function getCreatedAtAttribute($date){
+        $d = new \DateTime($date);
+        return $d->format('m/d/Y h:i a');
+    }
+    /**
+     * @throws \Exception
+     */
+    public function getUpdatedAtAttribute($date){
+        $d = new \DateTime($date);
+        return $d->format('m/d/Y h:i a');
+    }
+
+    public function category(){
+        return $this->belongsTo(NewsCategory::class,'news_category_id','id');
+    }
+
+    public function author(){
+        return $this->belongsTo(User::class,'user_id','id');
+    }
 }

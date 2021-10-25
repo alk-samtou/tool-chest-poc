@@ -11,4 +11,18 @@ class NewsCategory extends Model
     use HasFactory;
     protected $guarded = ['id'];
     protected $fillable = ['id','name','color','description',];
+    /**
+     * @throws \Exception
+     */
+    public function getCreatedAtAttribute($date){
+        $d = new \DateTime($date);
+        return $d->format('m/d/Y h:i a');
+    }
+    /**
+     * @throws \Exception
+     */
+    public function getUpdatedAtAttribute($date){
+        $d = new \DateTime($date);
+        return $d->format('m/d/Y h:i a');
+    }
 }

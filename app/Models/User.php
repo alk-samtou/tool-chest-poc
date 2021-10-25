@@ -46,4 +46,21 @@ class User extends Authenticatable
     public function getNameAttribute(){
         return "{$this->first_name} {$this->last_name}";
     }
+    public function name(){
+        return $this->first_name.' '.$this->last_name;
+    }
+    /**
+     * @throws \Exception
+     */
+    public function getCreatedAtAttribute($date){
+        $d = new \DateTime($date);
+        return $d->format('m/d/Y h:i a');
+    }
+    /**
+     * @throws \Exception
+     */
+    public function getUpdatedAtAttribute($date){
+        $d = new \DateTime($date);
+        return $d->format('m/d/Y h:i a');
+    }
 }

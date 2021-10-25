@@ -10,4 +10,7 @@ class NewsService extends Base
         parent::__construct(new Model());
     }
 
+    public function paginate($perPage=5){
+        return $this->model::with('category')->with('author')->paginate($perPage);
+    }
 }

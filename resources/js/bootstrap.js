@@ -14,19 +14,25 @@ window.copyToClipboard = str => {
     document.execCommand('copy');
     document.body.removeChild(el);
 }
-/**
- * Echo exposes an expressive API for subscribing to channels and listening
- * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
- */
 
-// import Echo from 'laravel-echo';
+window.slugify = function(str)
+{
+    str = str.replace(/^\s+|\s+$/g, '');
 
-// window.Pusher = require('pusher-js');
+    // Make the string lowercase
+    str = str.toLowerCase();
 
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     forceTLS: true
-// });
+    // Remove accents, swap ñ for n, etc
+    let from = "ÁÄÂÀÃÅČÇĆĎÉĚËÈÊẼĔȆÍÌÎÏŇÑÓÖÒÔÕØŘŔŠŤÚŮÜÙÛÝŸŽáäâàãåčçćďéěëèêẽĕȇíìîïňñóöòôõøðřŕšťúůüùûýÿžþÞĐđßÆa·/_,:;";
+    let to   = "AAAAAACCCDEEEEEEEEIIIINNOOOOOORRSTUUUUUYYZaaaaaacccdeeeeeeeeiiiinnooooooorrstuuuuuyyzbBDdBAa------";
+    for (let i=0, l=from.length ; i<l ; i++) {
+        str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+    }
+
+    return str.replace(/[^a-z0-9 -]/g, '')
+        // Collapse whitespace and replace by -
+        .replace(/\s+/g, '-')
+        // Collapse dashes
+        .replace(/-+/g, '-');
+
+}

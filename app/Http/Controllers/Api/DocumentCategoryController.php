@@ -39,6 +39,7 @@ class DocumentCategoryController extends Controller
     {
         $perPage = $request = $request->input('perPage',$this->paginateCount);
         $data = $this->service->model::orderBy('name')
+            ->with('documents')
             ->paginate($perPage)
             ->withQueryString();
 

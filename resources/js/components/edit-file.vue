@@ -197,14 +197,21 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex-shrink-0 px-4 py-4 flex justify-end">
-                                <button @click="$emit('cancel-edit-file')" type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    Cancel
-                                </button>
-                                <button @click="addDocument()" type="button"
-                                        class="ml-4 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    Save
-                                </button>
+                            <div class="flex-shrink-0 px-4 py-4 flex justify-between">
+                                <div>
+                                    <button @click="$emit('delete-file', file);$emit('cancel-edit-file')" type="button" class="bg-red-700 py-2 px-4 rounded-md shadow-sm text-sm font-medium text-white hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        Delete File
+                                    </button>
+                                </div>
+                                <div>
+                                    <button @click="$emit('cancel-edit-file')" type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        Cancel
+                                    </button>
+                                    <button @click="updateDocument()" type="button"
+                                            class="ml-4 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        Save
+                                    </button>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -224,7 +231,7 @@ export default {
         },
         file: false
     },
-    emits: ['cancel-edit-file', 'edited-file'],
+    emits: ['cancel-edit-file', 'edited-file','delete-file'],
     data() {
         return {
             record: {
@@ -250,21 +257,24 @@ export default {
     },
     methods: {
 
-        addDocument() {
+        updateDocument() {
             const vm = this;
 
             let data = new FormData();
-            data.append('title', this.record.title);
-            data.append('description', this.record.description);
-            data.append('document_category_id', this.record.document_category_id);
-            data.append('document_permission', this.record.document_permission);
-            data.append('is_featured', this.record.is_featured);
-            data.append('password', this.record.password);
+            data.append('title', vm.record.title);
+            data.append('description', vm.record.description);
+            data.append('document_category_id', vm.record.document_category_id);
+            data.append('document_permission', vm.record.document_permission);
+            data.append('is_featured', vm.record.is_featured);
+            data.append('password', vm.record.password);
             data.append('attachment', document.getElementById('attachment').files[0]);
 
-            window.axios.post('/api/documents', data).then(function (response) {
-                vm.$emit('added-file', response.data);
-            });
+            console.log(data);
+            
+            // window.axios.put('/api/documents/'+this.file.id, data).then(function (response) {
+            //     vm.$emit('edited-file', response.data);
+            //     vm.$emit('cancel-edit-file');
+            // });
         }
     }
 }

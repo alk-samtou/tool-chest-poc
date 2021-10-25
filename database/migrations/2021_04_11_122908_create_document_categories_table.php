@@ -16,6 +16,7 @@ class CreateDocumentCategoriesTable extends Migration
         Schema::create('document_categories', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
+            $table->string('color')->default('#000000');
             $table->string('description')->nullable();
             $table->timestamps();
         });

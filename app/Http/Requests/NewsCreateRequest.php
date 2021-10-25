@@ -13,6 +13,14 @@ class NewsCreateRequest extends FormRequest
 
     public function rules()
     {
-        return [];
+        return [
+            'news_category_id' => 'exists:news_categories,id',
+            'title' => 'required',
+            'slug' => 'required|unique:news,slug',
+            'description' => 'required',
+            'details' => 'required',
+            'featured_image' => 'file',
+            'is_hidden' => '',
+        ];
     }
 }

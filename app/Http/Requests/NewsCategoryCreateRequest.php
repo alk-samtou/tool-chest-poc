@@ -13,6 +13,10 @@ class NewsCategoryCreateRequest extends FormRequest
 
     public function rules()
     {
-        return [];
+        return [
+            'name' => 'required',
+            'color' => '',
+            'description' => '',
+        ];
     }
 }
